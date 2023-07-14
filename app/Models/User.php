@@ -14,6 +14,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps = false;
+    protected $primaryKey = 'user_id';
 
     /**
      * The attributes that are mass assignable.
@@ -26,15 +27,6 @@ class User extends Authenticatable
         'level_id',
         'class_id',
         'created_at'
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
     ];
 
     public function level(): BelongsTo

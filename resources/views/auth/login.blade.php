@@ -1,5 +1,5 @@
 @extends('layouts.auth')
 
 @section('content-auth')
-    oke
+    <button class="btn btn-danger">halo guys!</button>
 @endsection

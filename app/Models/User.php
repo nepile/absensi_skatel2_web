@@ -37,8 +37,13 @@ class User extends Authenticatable
         'password',
     ];
 
-    // public function level(): BelongsTo
-    // {
-    //     return $this->belongsTo();
-    // }
+    public function level(): BelongsTo
+    {
+        return $this->belongsTo(LevelUser::class, 'level_id');
+    }
+
+    public function class(): BelongsTo
+    {
+        return $this->belongsTo(ClassUser::class, 'class_id');
+    }
 }

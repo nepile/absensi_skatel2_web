@@ -8,5 +8,5 @@ Route::get('/', [Login::class, 'showLogin'])->name('login');
 Route::post('/handleLogin', [Login::class, 'handleLogin'])->name('handleLogin');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/overview', [Overview::class, 'showOverview']);
+    Route::get('/overview', [Overview::class, 'showOverview'])->name('overview');
 });

@@ -35,13 +35,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                <form action="/handle_login" method="POST">
+                <form action="{{ route('handleLogin') }}" method="POST">
                     @csrf
                     <div class="mt-3">
-                        <label for="nip" style="font-weight: 500;">NIP:</label>
-                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" id="nip" value="{{ old('nip') }}" style="border-radius: 5px; height: 50px;" placeholder="Masukkan NIP anda">
-                        @error('nip')
-                            <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                        <label for="username" style="font-weight: 500;">Username:</label>
+                        <input type="text" class="form-control @error('username') is-invalid @enderror" name="username" id="username" value="{{ old('username') }}" style="border-radius: 5px; height: 50px;" placeholder="Masukkan username anda">
+                        @error('username')
+                            <span class="text-danger" style="font-size: 14px">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -49,7 +49,7 @@
                         <label for="password" style="font-weight: 500;">Password:</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" style="border-radius: 5px; height: 50px;" placeholder="Masukkan password anda">
                         @error('password')
-                            <span class="text-danger" style="font-size: 12px">{{ $message }}</span>
+                            <span class="text-danger" style="font-size: 14px">{{ $message }}</span>
                         @enderror
                     </div>
 

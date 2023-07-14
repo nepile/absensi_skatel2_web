@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OverviewController extends Controller
 {
-    public function showOverview()
+    protected function showOverview()
     {
         $data = [
             'title'     => 'Overview',

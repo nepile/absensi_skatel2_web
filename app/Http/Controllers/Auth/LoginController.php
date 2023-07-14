@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    # render view login
     protected function showLogin()
     {
         $title = 'Login';
         return view('auth.login', compact('title'));
     }
 
+    # handle login user
     protected function handleLogin(Request $request)
     {
         $credentials = $this->validate($request, [
@@ -28,6 +30,13 @@ class LoginController extends Controller
             return redirect()->route('overview');
         }
 
-        return back()->with('error', 'username atau password anda salah!');
+        return back()->with('error', 'Username atau Password anda salah!');
+    }
+
+    # handle logout user
+    protected function handleLogout()
+    {
+        Auth::logout();
+        return redirect()->route('login')->with('success', 'Anda telah keluar.');
     }
 }

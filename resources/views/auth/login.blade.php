@@ -34,6 +34,11 @@
                     <span>{{ session('error') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                @elseif(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span>{{ session('success') }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
                 <form action="{{ route('handleLogin') }}" method="POST">
                     @csrf

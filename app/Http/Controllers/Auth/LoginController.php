@@ -16,7 +16,7 @@ class LoginController extends Controller
     }
 
     # handle login user
-    protected function handleLogin(Request $request)
+    protected function handleLoginOnWeb(Request $request)
     {
         $credentials = $this->validate($request, [
             'username'  => 'required',

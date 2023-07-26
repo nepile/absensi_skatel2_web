@@ -1,0 +1,78 @@
+/* Sidebar Style */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; /* Make sure the sidebar appears above the main content */
+    padding: 48px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: width 0.3s;
+}
+
+.active-navbar {
+    background: #0000002f;
+}
+
+.sidebar .nav-link {
+    color: #333;
+}
+
+.sidebar .nav-link:hover {
+    color: #007bff;
+}
+
+/* Logo and Title Style */
+.sidebar .navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.sidebar .navbar-brand i {
+    margin-right: 10px;
+}
+
+/* Sidebar Toggled Style */
+.sidebar.active {
+    width: 200px; /* Sidebar shrinks when toggled */
+}
+
+.sidebar.active .navbar-brand {
+    display: none; /* Hide logo text when toggled */
+}
+
+.sidebar.active .nav-link {
+    padding: 10px 10px;
+}
+
+/* Hamburger Menu (Hide on larger screens) */
+#sidebarCollapse {
+    display: none;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 767.98px) {
+    /* Show the hamburger menu on mobile screens */
+    #sidebarCollapse {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    /* Hide the sidebar by default on mobile screens */
+    #sidebar {
+        display: none;
+    }
+    
+    /* Show the sidebar when the "active" class is added */
+    #sidebar.active {
+        display: block;
+    }
+}

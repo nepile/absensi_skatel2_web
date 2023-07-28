@@ -15,7 +15,7 @@ class LoginController extends Controller
         return view('auth.login', compact('title'));
     }
 
-    # handle login user
+    # handle login user on the web
     protected function handleLoginOnWeb(Request $request)
     {
         $credentials = $this->validate($request, [

@@ -35,7 +35,7 @@ class UpdatePasswordController extends Controller
         }
 
         if ($request->retypePassword == $request->newPassword) {
-            DB::table('users')->where('user_id', $request->user_id)->update([
+            DB::table('users')->where('user_id', $request->userId)->update([
                 'password'  => Hash::make($request->newPassword)
             ]);
 

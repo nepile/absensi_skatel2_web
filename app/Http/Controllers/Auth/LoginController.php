@@ -49,7 +49,7 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success'   => false,
-                'message'   => 'Username & Password is required!'
+                'message'   => 'Username & Password wajib diisi'
             ], 400);
         }
 
@@ -57,13 +57,13 @@ class LoginController extends Controller
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json([
                     'success'   => false,
-                    'message'   => 'Unauthorized'
+                    'message'   => 'Akun anda tidak ditemukan'
                 ], 403);
             }
         } catch (JWTException $e) {
             return response()->json([
                 'success'   => false,
-                'message'   => 'Failed to login'
+                'message'   => 'Internal Server Error'
             ], 500);
         }
 
@@ -82,7 +82,7 @@ class LoginController extends Controller
         } else {
             return response()->json([
                 'success'   => false,
-                'message'   => "You're superadmin and not allowed to be access mobile"
+                'message'   => "Anda superadmin dan tidak diizinkan mengakses aplikasi mobile"
             ], 403);
         }
     }

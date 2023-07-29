@@ -14,7 +14,9 @@ class LevelSeeder extends Seeder
     public function run(): void
     {
         DB::table('level_user')->insert([
-            ['level_name' => 'superadmin']
+            ['level_name' => 'superadmin'],
+            ['level_name' => 'teacher'],
+            ['level_name' => 'student']
         ]);
     }
 }

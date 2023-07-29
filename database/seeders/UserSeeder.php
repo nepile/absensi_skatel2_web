@@ -18,6 +18,13 @@ class UserSeeder extends Seeder
                 'username'      => 206765,
                 'password'      => bcrypt('123neville456'),
                 'level_id'      => 1,
+                'class_id'      => null,
+                'created_at'    => now(),
+            ],
+            [
+                'username'      => 12345,
+                'password'      => bcrypt('123nono456'),
+                'level_id'      => 2,
                 'class_id'      => 1,
                 'created_at'    => now(),
             ]

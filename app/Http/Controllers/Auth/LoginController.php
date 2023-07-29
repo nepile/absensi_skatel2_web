@@ -49,7 +49,7 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'success'   => false,
-                'message'   => $validator->errors()
+                'message'   => 'Username & Password is required!'
             ], 400);
         }
 

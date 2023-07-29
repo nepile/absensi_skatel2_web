@@ -74,6 +74,7 @@ class LoginController extends Controller
                 'data'          => [
                     'user_id'   => JWTAuth::user()->user_id,
                     'username'  => JWTAuth::user()->username,
+                    'class'     => JWTAuth::user()->class->class_name,
                 ],
                 'access_token'  => 'Bearer',
                 'token'         => $token

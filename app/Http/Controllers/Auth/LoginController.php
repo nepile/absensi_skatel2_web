@@ -58,7 +58,7 @@ class LoginController extends Controller
                 return response()->json([
                     'success'   => false,
                     'message'   => 'Akun anda tidak ditemukan'
-                ], 403);
+                ], 401);
             }
         } catch (JWTException $e) {
             return response()->json([

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
@@ -32,6 +35,55 @@ class LoginController extends Controller
         }
 
         return back()->with('error', 'Username atau Password anda salah!');
+    }
+
+    # handle login user on the mobile
+    protected function handleLoginOnMobile(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        $validator = Validator::make($request->all(), [
+            'username'  => 'required',
+            'password'  => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success'   => false,
+                'message'   => $validator->errors()
+            ], 400);
+        }
+
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
+                return response()->json([
+                    'success'   => false,
+                    'message'   => 'Unauthorized'
+                ], 403);
+            }
+        } catch (JWTException $e) {
+            return response()->json([
+                'success'   => false,
+                'message'   => 'Failed to login'
+            ], 500);
+        }
+
+        if (JWTAuth::user()->level_id != 1) {
+            return response()->json([
+                'success'       => true,
+                'message'       => 'Authorized',
+                'data'          => [
+                    'user_id'   => JWTAuth::user()->user_id,
+                    'username'  => JWTAuth::user()->username,
+                ],
+                'access_token'  => 'Bearer',
+                'token'         => $token
+            ], 200);
+        } else {
+            return response()->json([
+                'success'   => false,
+                'message'   => "You're superadmin and not allowed to be access mobile"
+            ], 403);
+        }
     }
 
 

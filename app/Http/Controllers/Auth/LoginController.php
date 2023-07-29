@@ -19,19 +19,21 @@ class LoginController extends Controller
     protected function handleLoginOnWeb(Request $request)
     {
         $credentials = $this->validate($request, [
-            'username'  => 'required',
-            'password'  => 'required'
+            'username' => 'required',
+            'password' => 'required'
         ], [
-            'username'  => 'Username tidak boleh kosong!',
-            'password'  => 'Password tidak boleh kosong!'
+            'username.required' => 'Username tidak boleh kosong!',
+            'password.required' => 'Password tidak boleh kosong!'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // Attempt to authenticate the user with the provided credentials and level_id = 1
+        if (Auth::attempt(['username' => $credentials['username'], 'password' => $credentials['password'], 'level_id' => '1'])) {
             return redirect()->route('overview');
         }
 
         return back()->with('error', 'Username atau Password anda salah!');
     }
+
 
     # handle logout user
     protected function handleLogout()

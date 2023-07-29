@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'username'      => 206765,
+                'name'          => 'Bg Jeremy',
                 'password'      => bcrypt('123neville456'),
                 'level_id'      => 1,
                 'class_id'      => null,
@@ -23,6 +24,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'username'      => 12345,
+                'name'          => 'Neville Jeremy Onorato Laia',
                 'password'      => bcrypt('123nono456'),
                 'level_id'      => 2,
                 'class_id'      => 1,

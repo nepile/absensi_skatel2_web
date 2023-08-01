@@ -14,7 +14,7 @@
               Jumlah Siswa
             </div>
             <div class="d-flex justify-content-between align-items-center">
-              <h3 class="mt-1 mb-0" style="font-weight: bold">206</h3>
+              <h3 class="mt-1 mb-0" style="font-weight: bold">{{ $count_student }}</h3>
               <i class="fa fa-graduation-cap" style="color: #ddd; font-size: 25px"></i>
             </div>
           </div>
@@ -28,7 +28,7 @@
               Jumlah Guru
             </div>
             <div class="d-flex justify-content-between align-items-center">
-              <h3 class="mt-1 mb-0" style="font-weight: bold">206</h3>
+              <h3 class="mt-1 mb-0" style="font-weight: bold">{{ $count_teacher }}</h3>
               <i class="fa fa-user" style="color: #ddd; font-size: 25px"></i>
             </div>
           </div>
@@ -55,15 +55,14 @@
                   <tr>
                     <th>No.</th>
                     <th>NIS</th>
+                    <th>Nama</th>
                     <th>Kelas</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1.</td>
-                    <td>206765</td>
-                    <td>X RPL 1</td>
-                  </tr>
+                  @foreach ($students as $student)
+                      
+                  @endforeach
                 </tbody>
               </table>
             </div>

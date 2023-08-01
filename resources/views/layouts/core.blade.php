@@ -40,5 +40,7 @@
   <script>
     new DataTable('#data');
   </script>
+
+  @include('components.popup')
 </body>
 </html>

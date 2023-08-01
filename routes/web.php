@@ -18,5 +18,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/guru', [User::class, 'showGuru'])->name('guru');
         Route::get('/siswa', [User::class, 'showSiswa'])->name('siswa');
     });
+    Route::prefix('/create')->group(function () {
+        Route::post('/user', [User::class, 'createUser'])->name('createUser');
+    });
     Route::get('/user_activity', [LogActivity::class, 'showLogActivity'])->name('user_activity');
 });

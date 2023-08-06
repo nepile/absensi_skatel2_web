@@ -61,7 +61,12 @@
                 </thead>
                 <tbody>
                   @foreach ($students as $student)
-                      
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $student->username }}</td>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->class->class_name }}</td>
+                      </tr>
                   @endforeach
                 </tbody>
               </table>

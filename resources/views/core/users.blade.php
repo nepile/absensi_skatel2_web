@@ -63,8 +63,8 @@
                         <thead style="background: #af1f22; color: #fff">
                             <tr style="white-space: nowrap">
                                 <th>No.</th>
-                                <th>Nama</th>
                                 <th>NIS/NIP</th>
+                                <th>Nama</th>
                                 @if ($id_page == 4)
                                 <th>Kelas</th>
                                 @endif

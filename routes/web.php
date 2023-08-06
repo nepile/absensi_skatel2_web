@@ -21,5 +21,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/create')->group(function () {
         Route::post('/user', [User::class, 'createUser'])->name('createUser');
     });
+    Route::prefix('/update')->group(function () {
+        Route::post('/user/{user_id}', [User::class, 'updateUser'])->name('updateUser');
+    });
+    Route::prefix('/delete')->group(function () {
+        Route::post('/user/{user_id}', [User::class, 'deleteUser'])->name('deleteUser');
+    });
     Route::get('/user_activity', [LogActivity::class, 'showLogActivity'])->name('user_activity');
 });

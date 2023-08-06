@@ -81,8 +81,66 @@
                                 <td>{{ $user->class->class_name }}</td>
                                 @endif
                                 <td>
-                                    <button class="btn" style="background: #af1f22"><i class="fa fa-pencil text-light"></i></button>
-                                    <button class="btn" style="background: #af1f22"><i class="fa fa-trash text-light"></i></button>
+                                    {{-- Edit user --}}
+                                    <button class="btn" style="background: #af1f22" data-bs-toggle="modal" data-bs-target="{{ '#updateUser'.$user->user_id }}"><i class="fa fa-pencil text-light"></i></button>
+                                    <div class="modal fade" id="{{ 'updateUser'.$user->user_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background: #af1f22">
+                                                    <h1 class="modal-title text-light fs-5" id="exampleModalLabel">Edit {{ $title }}</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="{{ route('updateUser', $user->user_id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-body">
+                                                        <div>
+                                                            <label for="name">Nama Lengkap*</label>
+                                                            <input type="text" required class="form-control" value="{{ $user->name }}" placeholder="ex. Neville Jeremy" name="name" id="name">
+                                                        </div>       
+                                                        
+                                                        @if ($id_page == 4)
+                                                        <div class="mt-3">
+                                                            <label for="class_id">Kelas*</label>
+                                                            <select name="class_id" required class="form-control" id="class_id">
+                                                                <option value="{{ $user->class_id }}">{{$user->class->class_name}}</option>
+                                                                <option value="">-Pilih Kelas-</option>
+                                                                @foreach ($classes as $class)
+                                                                <option value="{{ $class->class_id }}">{{ $class->class_name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="modal-footer border-0">
+                                                        <button type="submit" class="btn text-light" style="background: #af1f22">Update</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {{-- Delete user --}}
+                                    <button class="btn" style="background: #af1f22" type="button" data-bs-toggle="modal" data-bs-target="{{ '#delete'.$user->user_id }}"><i class="fa fa-trash text-light"></i></button>
+                                    <div class="modal fade" id="{{ 'delete'.$user->user_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content text-light" style="background: #af1f22">
+                                                <div class="modal-header border-0">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hapus User</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Yakin untuk menghapus data?
+                                                </div>
+                                                <form action="{{ route('deleteUser', $user->user_id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="modal-footer border-0">
+                                                        <button type="submit" class="btn btn-light">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach

@@ -51,4 +51,29 @@ class UsersController extends Controller
             return back()->with('error', 'NIS/NIP sudah digunakan sebelumnya.');
         }
     }
+
+    protected function updateUser(Request $request, $user_id)
+    {
+        try {
+            DB::table('users')->where('user_id', $user_id)->update([
+                'name'      => $request->name,
+                'class_id'  => $request->class_id
+            ]);
+
+            return back()->with('success', 'Data berhasil diperbarui');
+        } catch (Exception $e) {
+            return back()->with('error', 'Data gagal diperbarui');
+        }
+    }
+
+    protected function deleteUser($user_id)
+    {
+        try {
+            DB::table('users')->where('user_id', $user_id)->delete();
+
+            return back()->with('success', 'Data berhasil dihapus');
+        } catch (Exception $e) {
+            return back()->with('error', 'Data gagal diperbarui');
+        }
+    }
 }

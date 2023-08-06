@@ -6,7 +6,7 @@
         <p class="text-secondary">Rekapan {{ $title }}.</p>
         <button class="btn mb-3 text-light" data-bs-toggle="modal" data-bs-target="#create" style="background: #af1f22"><i class="fa fa-add"></i> Tambah {{ $title }}</button>
         @if ($id_page == 4)
-        <button class="btn mb-3 text-light" style="background: #af1f22"><i class="fa fa-graduation-cap"></i> Management Kelas</button>
+        <a href="{{ route('classManage') }}" class="btn mb-3 text-light" style="background: #af1f22"><i class="fa fa-graduation-cap"></i> Management Kelas</a>
         @endif
     </div>
     
@@ -78,7 +78,14 @@
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->name }}</td>
                                 @if ($id_page == 4)
-                                <td>{{ $user->class->class_name }}</td>
+                                <td>
+                                    @if ($user->class)
+                                    {{ $user->class->class_name }}
+                                    @else
+                                    {{ '-' }}
+                                    @endif
+                                </td>
+                                
                                 @endif
                                 <td>
                                     {{-- Edit user --}}
@@ -102,7 +109,9 @@
                                                         <div class="mt-3">
                                                             <label for="class_id">Kelas*</label>
                                                             <select name="class_id" required class="form-control" id="class_id">
+                                                                @if ($user->class == true)
                                                                 <option value="{{ $user->class_id }}">{{$user->class->class_name}}</option>
+                                                                @endif
                                                                 <option value="">-Pilih Kelas-</option>
                                                                 @foreach ($classes as $class)
                                                                 <option value="{{ $class->class_id }}">{{ $class->class_name }}</option>
@@ -111,7 +120,7 @@
                                                         </div>
                                                         @endif
                                                     </div>
-
+                                                    
                                                     <div class="modal-footer border-0">
                                                         <button type="submit" class="btn text-light" style="background: #af1f22">Update</button>
                                                     </div>

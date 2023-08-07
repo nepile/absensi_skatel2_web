@@ -16,4 +16,15 @@ class PresensiController extends Controller
 
         return view('core.presensi', $data);
     }
+
+    protected function showCategoryPresensi($rekapan)
+    {
+        $data = [
+            'title'     => 'Kategori Data Presensi',
+            'id_page'   => null,
+            'rekapan'   => $rekapan
+        ];
+
+        return view('core.category_presensi', $data);
+    }
 }

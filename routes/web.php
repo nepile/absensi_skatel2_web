@@ -13,13 +13,20 @@ Route::post('/handleLogin', [Login::class, 'handleLoginOnWeb'])->name('handleLog
 Route::post('/handleLogout', [Login::class, 'handleLogout'])->name('handleLogout');
 
 Route::middleware('auth')->group(function () {
+    // General routes
     Route::get('/overview', [Overview::class, 'showOverview'])->name('overview');
     Route::prefix('/data')->group(function () {
-        Route::get('/presensi', [Presensi::class, 'showPresensi'])->name('presensi');
+        Route::prefix('/presensi')->group(function () {
+            Route::get('/', [Presensi::class, 'showPresensi'])->name('presensi');
+            Route::get('/category/{rekapan}', [Presensi::class, 'showCategoryPresensi'])->name('categoryPresensi');
+        });
         Route::get('/guru', [User::class, 'showGuru'])->name('guru');
         Route::get('/siswa', [User::class, 'showSiswa'])->name('siswa');
         Route::get('/kelas', [ClassManage::class, 'showClass'])->name('classManage');
     });
+    Route::get('/user_activity', [LogActivity::class, 'showLogActivity'])->name('user_activity');
+
+    // CRUD routes
     Route::prefix('/create')->group(function () {
         Route::post('/user', [User::class, 'createUser'])->name('createUser');
         Route::post('/class', [ClassManage::class, 'createClass'])->name('createClass');
@@ -32,5 +39,4 @@ Route::middleware('auth')->group(function () {
         Route::post('/user/{user_id}', [User::class, 'deleteUser'])->name('deleteUser');
         Route::post('/class/{class_id}', [ClassManage::class, 'deleteClass'])->name('deleteClass');
     });
-    Route::get('/user_activity', [LogActivity::class, 'showLogActivity'])->name('user_activity');
 });

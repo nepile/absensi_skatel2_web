@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('/presensi')->group(function () {
             Route::get('/', [Presensi::class, 'showPresensi'])->name('presensi');
             Route::get('/category/{rekapan}', [Presensi::class, 'showCategoryPresensi'])->name('categoryPresensi');
+            Route::get('/data/{rekapan}/{user}', [Presensi::class, 'showDataPresensi'])->name('dataPresensi');
         });
         Route::get('/guru', [User::class, 'showGuru'])->name('guru');
         Route::get('/siswa', [User::class, 'showSiswa'])->name('siswa');
@@ -26,7 +27,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/user_activity', [LogActivity::class, 'showLogActivity'])->name('user_activity');
 
-    // CRUD routes
+    // CUD routes
     Route::prefix('/create')->group(function () {
         Route::post('/user', [User::class, 'createUser'])->name('createUser');
         Route::post('/class', [ClassManage::class, 'createClass'])->name('createClass');

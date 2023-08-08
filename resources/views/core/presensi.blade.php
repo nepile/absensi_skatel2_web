@@ -16,7 +16,7 @@
                 </div>
                 <div style="border-bottom: 1px solid #eee; border-width: 100%;">
                     <a href="{{ route('categoryPresensi', 'bulanan') }}" class="text-decoration-none d-inline-block">
-                        <h6 class="my-3">Rekapan Persensi</h6>
+                        <h6 class="my-3">Rekapan Bulanan Persensi</h6>
                     </a>
                 </div>
             </div>

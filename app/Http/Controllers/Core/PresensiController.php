@@ -27,4 +27,16 @@ class PresensiController extends Controller
 
         return view('core.category_presensi', $data);
     }
+
+    protected function showDataPresensi($rekapan, $user)
+    {
+        $data = [
+            'title'     => 'Presensi ' . ucfirst($rekapan) . ' ' . ucfirst($user),
+            'id_page'   => null,
+            'user'      => $user,
+            'rekapan'   => $rekapan,
+        ];
+
+        return view('core.data_presensi', $data);
+    }
 }

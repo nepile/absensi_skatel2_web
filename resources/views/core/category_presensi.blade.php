@@ -12,7 +12,7 @@
         </div>
     </div>
     
-    <a href="" class="col-xl-6 text-decoration-none">
+    <a href="{{ route('dataPresensi', [$rekapan, 'siswa']) }}" class="col-xl-6 text-decoration-none">
         <div class="card border-0 text-light" style="background: #af1f22">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <span>Presensi Siswa</span>
@@ -23,7 +23,7 @@
         </div>
     </a>    
 
-    <a href="" class="col-xl-6 text-decoration-none">
+    <a href="{{ route('dataPresensi', [$rekapan, 'guru']) }}" class="col-xl-6 text-decoration-none">
         <div class="card border-0 text-light" style="background: #af1f22">
             <div class="card-body d-flex justify-content-between align-items-center">
                 <span>Presensi Guru</span>

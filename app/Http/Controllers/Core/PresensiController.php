@@ -85,7 +85,7 @@ class PresensiController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'success'   => false,
-                'message'   => $e->getMessage(),
+                'message'   => 'Gagal melakukan presensi. pastikan internet anda terhubung dengan internet',
             ], 500);
         }
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
+use App\Utils\PushActivityUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,8 @@ class UpdatePasswordController extends Controller
             DB::table('users')->where('user_id', $request->userId)->update([
                 'password'  => Hash::make($request->newPassword)
             ]);
+
+            PushActivityUser::push($request->userId, 'Update Password', 'Telah mengubah password');
 
             return response()->json([
                 'success'   => true,

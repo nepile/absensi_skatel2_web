@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Utils\PushActivityUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -68,6 +69,7 @@ class LoginController extends Controller
         }
 
         if (JWTAuth::user()->level_id != 1) {
+            PushActivityUser::push(JWTAuth::user()->user_id, 'Login', 'Berhasil masuk ke dalam Aplikasi Mobile.');
             return response()->json([
                 'success'       => true,
                 'message'       => 'Authorized',

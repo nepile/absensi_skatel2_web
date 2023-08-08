@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\Models\Presensi;
+use App\Utils\PushActivityUser;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -70,6 +71,8 @@ class PresensiController extends Controller
                     'time'      => $this_time,
                     'category'  => $request->category
                 ]);
+
+                PushActivityUser::push($request->userId, 'Presensi', "Telah melakukan presensi $request->category");
 
                 return response()->json([
                     'success'   => true,

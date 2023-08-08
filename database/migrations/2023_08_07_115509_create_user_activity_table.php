@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('user_activity', function (Blueprint $table) {
             $table->id('activity_id');
             $table->foreignId('user_id')->constrained('users', 'user_id')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('actcategory_id')->constrained('activity_category', 'actcategory_id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('action');
             $table->string('activity_desc');
             $table->timestamp('created_at');
         });

@@ -14,7 +14,7 @@ class UserActivity extends Model
     protected $primaryKey = 'activity_id';
     protected $fillable = [
         'user_id',
-        'actcategory_id',
+        'action',
         'activity_desc',
         'created_at'
     ];
@@ -22,10 +22,5 @@ class UserActivity extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function activityCategory(): BelongsTo
-    {
-        return $this->belongsTo(ActivityCategory::class, 'actcategory_id');
     }
 }

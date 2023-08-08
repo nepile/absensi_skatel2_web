@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             LevelSeeder::class,
             ClassSeeder::class,
             UserSeeder::class,
-            ActivityCategorySeeder::class,
         ]);
     }
 }

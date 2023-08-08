@@ -14,4 +14,8 @@ Route::post('/login', [LoginController::class, 'handleLoginOnMobile']);
 Route::middleware(['jwt.auth', 'jwt.verify'])->group(function () {
     Route::post('/change-password', [UpdatePasswordController::class, 'changePassword']);
     Route::post('/presensi', [PresensiController::class, 'presensi']);
+    Route::prefix('/rekap-presensi')->group(function () {
+        Route::get('/harian', [PresensiController::class, 'rekapPresensiHarian']);
+        Route::get('/bulanan', [PresensiController::class, 'rekapPresensiBulanan']);
+    });
 });

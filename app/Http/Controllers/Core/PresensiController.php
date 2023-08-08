@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\Models\Presensi;
-use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -88,5 +87,36 @@ class PresensiController extends Controller
                 'message'   => 'Gagal melakukan presensi. pastikan internet anda terhubung dengan internet',
             ], 500);
         }
+    }
+
+    protected function rekapPresensiHarian()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $today = date('d', strtotime('now'));
+        $this_month = date('M', strtotime('now'));
+        $this_year = date('Y', strtotime('now'));
+
+        $data = Presensi::where('day', $today)->where('month', $this_month)->where('year', $this_year)->get();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Success to get data',
+            'data'      => $data
+        ], 200);
+    }
+
+    protected function rekapPresensiBulanan()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $this_month = date('M', strtotime('now'));
+        $this_year = date('Y', strtotime('now'));
+
+        $data = Presensi::where('month', $this_month)->where('year', $this_year)->get();
+
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Success to get data',
+            'data'      => $data
+        ], 200);
     }
 }

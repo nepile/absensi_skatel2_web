@@ -69,7 +69,7 @@ class LoginController extends Controller
         }
 
         if (JWTAuth::user()->level_id != 1) {
-            PushActivityUser::push(JWTAuth::user()->user_id, 'Login', 'Berhasil masuk ke dalam Aplikasi Mobile.');
+            PushActivityUser::push(JWTAuth::user()->user_id, 'Login', 'Berhasil masuk ke dalam Aplikasi Mobile');
             return response()->json([
                 'success'       => true,
                 'message'       => 'Authorized',

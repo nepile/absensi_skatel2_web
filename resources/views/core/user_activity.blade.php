@@ -15,37 +15,27 @@
                             <tr>
                                 <th>No.</th>
                                 <th>NIS/NIP</th>
-                                <th>Nama</th>
-                                <th>Deskripsi</th>
-                                <th>Detail</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                                <th>Descriptions</th>
+                                <th>Activity Time</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($activities as $activity)
                             <tr>
-                                <td>1.</td>
-                                <td>206765</td>
-                                <td>Neville Jeremy Onorato Laia (XII RPL 1)</td>
+                                <td>{{ $loop->iteration . '.' }}</td>
+                                <td>{{ $activity->user->username }}</td>
+                                <td>{{ $activity->user->name }} ({{ $activity->user->class->class_name }})</td>
                                 <td>
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores unde at voluptatum, odit dicta, quas eos minima officia, neque ipsam doloremque alias tempore cumque dolorum perspiciatis natus perferendis quod laboriosam?
+                                    {{ $activity->action }}
                                 </td>
                                 <td>
-                                    <button class="btn" style="background: #af1f22" data-bs-toggle="modal" data-bs-target="#detail"><i class="fa fa-eye text-light"></i></button>
-                                    
-                                    <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header" style="background: #af1f22">
-                                                    <h1 class="modal-title text-light fs-5" id="exampleModalLabel">Detail Aktivitas</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    oke
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {{ $activity->activity_desc }}
                                 </td>
+                                <td>{{ $activity->created_at }}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

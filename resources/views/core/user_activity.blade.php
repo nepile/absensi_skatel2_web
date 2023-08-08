@@ -15,7 +15,8 @@
                             <tr>
                                 <th>No.</th>
                                 <th>NIS/NIP</th>
-                                <th>Kelas</th>
+                                <th>Nama</th>
+                                <th>Deskripsi</th>
                                 <th>Detail</th>
                             </tr>
                         </thead>
@@ -23,9 +24,26 @@
                             <tr>
                                 <td>1.</td>
                                 <td>206765</td>
-                                <td>X RPL 1</td>
+                                <td>Neville Jeremy Onorato Laia (XII RPL 1)</td>
                                 <td>
-                                    <button class="btn" style="background: #af1f22"><i class="fa fa-eye text-light"></i></button>
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores unde at voluptatum, odit dicta, quas eos minima officia, neque ipsam doloremque alias tempore cumque dolorum perspiciatis natus perferendis quod laboriosam?
+                                </td>
+                                <td>
+                                    <button class="btn" style="background: #af1f22" data-bs-toggle="modal" data-bs-target="#detail"><i class="fa fa-eye text-light"></i></button>
+                                    
+                                    <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background: #af1f22">
+                                                    <h1 class="modal-title text-light fs-5" id="exampleModalLabel">Detail Aktivitas</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    oke
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

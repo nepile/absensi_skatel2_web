@@ -42,7 +42,7 @@ class PresensiController extends Controller
         $this_time = date('H:i:s', strtotime('now'));
 
         $validator = Validator::make($request->all(), [
-            'user_id'   => 'required',
+            'userId'   => 'required',
             'category'  => 'required'
         ]);
 
@@ -54,7 +54,7 @@ class PresensiController extends Controller
         }
 
         // CHECK if user has presensi today with the specified category
-        $user_check = Presensi::where('user_id', $request->user_id)
+        $user_check = Presensi::where('user_id', $request->userId)
             ->where('day', $today)
             ->where('month', $this_month)
             ->where('year', $this_year)
@@ -64,7 +64,7 @@ class PresensiController extends Controller
         try {
             if ($user_check === null) {
                 DB::table('presensi')->insert([
-                    'user_id'   => $request->user_id,
+                    'user_id'   => $request->userId,
                     'day'       => $today,
                     'month'     => $this_month,
                     'year'      => $this_year,
@@ -74,8 +74,8 @@ class PresensiController extends Controller
 
                 return response()->json([
                     'success'   => true,
-                    'message'   => 'Berhasil melakukan presensi' . $request->category
-                ], 201);
+                    'message'   => 'Berhasil melakukan presensi ' . $request->category
+                ], 200);
             } else {
                 return response()->json([
                     'success'       => false,
@@ -85,7 +85,7 @@ class PresensiController extends Controller
         } catch (Exception $e) {
             return response()->json([
                 'success'   => false,
-                'message'   => 'Gagal melakukan presensi',
+                'message'   => $e->getMessage(),
             ], 500);
         }
     }

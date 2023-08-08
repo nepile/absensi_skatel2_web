@@ -100,7 +100,7 @@
                         <tbody>
                             @foreach ($users as $user)
                             <tr style="white-space: nowrap">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration . '.' }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->name }}</td>
                                 @if ($id_page == 4)

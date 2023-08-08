@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Core;
 use App\Http\Controllers\Controller;
 use App\Models\ClassUser;
 use App\Models\User;
+use App\Utils\ReadExcel;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class UsersController extends Controller
 {
@@ -75,5 +77,21 @@ class UsersController extends Controller
         } catch (Exception $e) {
             return back()->with('error', 'Data gagal diperbarui');
         }
+    }
+
+    protected function importUser(Request $request)
+    {
+        $file = $request->file('excel');
+        $level = $request->level_id;
+        $this->validate($request, [
+            'excel' => 'required|mimes:xls,xlsx'
+        ]);
+        $spreadsheet = IOFactory::load($file);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = $sheet->toArray();
+
+        ReadExcel::readUsers($rows, $level);
+
+        return back()->with('success', 'Berhasil menambahkan data.');
     }
 }

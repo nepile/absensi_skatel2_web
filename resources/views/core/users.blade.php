@@ -1,6 +1,7 @@
 @extends('layouts.core')
 
 @section('content-core')
+
 <div class="row mt-4"> 
     <div class="col-12">
         <p class="text-secondary">Rekapan {{ $title }}.</p>
@@ -8,6 +9,7 @@
         @if ($id_page == 4)
         <a href="{{ route('classManage') }}" class="btn mb-3 text-light" style="background: #af1f22"><i class="fa fa-graduation-cap"></i> Management Kelas</a>
         @endif
+        <button class="btn mb-3 text-light" data-bs-toggle="modal" data-bs-target="#import" style="background: #af1f22"><i class="fa fa-arrow-down"></i> Import {{ $title }}</button>
     </div>
     
     {{-- modal create --}}
@@ -47,6 +49,30 @@
                     </div>
                     <div class="modal-footer border-0">
                         <button type="submit" class="btn text-light" style="background: #af1f22">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    {{-- modal import --}}
+    <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #af1f22">
+                    <h1 class="modal-title text-light fs-5" id="exampleModalLabel">Import Data {{ $title }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('importUser') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="level_id" value="@if($id_page == 4) 3 @else 2 @endif">
+                        <input type="file" accept=".xls, .xlsx" class="form-control" name="excel" id="excel">
+                        
+                    </div>
+                    <div class="modal-footer border-0">
+                        <a href="@if($id_page == 4) {{ asset('storage/samples/SAMPLE-SISWA.xlsx') }} @else {{ asset('storage/samples/SAMPLE-GURU.xlsx') }} @endif" download class="btn btn-secondary text-light">Download Sample</a>
+                        <button type="submit" class="btn text-light" style="background: #af1f22">Import Data</button>
                     </div>
                 </form>
             </div>

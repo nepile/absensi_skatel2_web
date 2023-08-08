@@ -39,4 +39,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/user/{user_id}', [User::class, 'deleteUser'])->name('deleteUser');
         Route::post('/class/{class_id}', [ClassManage::class, 'deleteClass'])->name('deleteClass');
     });
+
+    // Import routes
+    Route::prefix('/import')->group(function () {
+        Route::post('/user', [User::class, 'importUser'])->name('importUser');
+    });
 });

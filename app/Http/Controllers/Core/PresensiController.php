@@ -33,6 +33,26 @@ class PresensiController extends Controller
         return view('core.category_presensi', $data);
     }
 
+    protected function showDataPresensi($rekapan, $user)
+    {
+
+        date_default_timezone_set('Asia/Jakarta');
+        $today = date('d', strtotime('now'));
+        $this_month = date('M', strtotime('now'));
+        $this_year = date('Y', strtotime('now'));
+
+        $data = [
+            'title'             => 'Rekapan ' . ucfirst($rekapan) . ' ' . ucfirst($user),
+            'id_page'           => null,
+            'rekapan'           => $rekapan,
+            'user'              => $user,
+            'presensi_harian'   => Presensi::where('day', $today)->where('month', $this_month)->where('year', $this_year)->get(),
+            'presensi_bulanan'  => Presensi::all(),
+        ];
+
+        return view('core.data_presensi', $data);
+    }
+
     protected function presensi(Request $request)
     {
         date_default_timezone_set('Asia/Jakarta');
@@ -110,11 +130,7 @@ class PresensiController extends Controller
 
     protected function rekapPresensiBulanan()
     {
-        date_default_timezone_set('Asia/Jakarta');
-        $this_month = date('M', strtotime('now'));
-        $this_year = date('Y', strtotime('now'));
-
-        $data = Presensi::where('month', $this_month)->where('year', $this_year)->get();
+        $data = Presensi::all();
 
         return response()->json([
             'success'   => true,

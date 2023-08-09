@@ -26,7 +26,7 @@
                             <tr>
                                 <td>{{ $loop->iteration . '.' }}</td>
                                 <td>{{ $activity->user->username }}</td>
-                                <td>{{ $activity->user->name }} ({{ $activity->user->class->class_name }})</td>
+                                <td>{{ $activity->user->name }} @if($activity->user->class == true) ({{ $activity->user->class->class_name }}) @else {{ '(Guru)' }} @endif</td>
                                 <td>
                                     {{ $activity->action }}
                                 </td>

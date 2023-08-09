@@ -21,11 +21,11 @@ class ReadExcel
             if ($level == 3) {
                 // GET KELAS ID
                 $class_name = $row[2];
-                $getClass = ClassUser::where(['class_name', $class_name])->first();
+                $getClass = ClassUser::where('class_name', $class_name)->first();
             }
 
             // CHECK IF USER EXISTS
-            $getUser = User::where(['username' => $username])->first();
+            $getUser = User::where('username', $username)->first();
 
             if ($getUser === null) {
                 $user = new User();
@@ -41,7 +41,7 @@ class ReadExcel
                 }
                 $user->created_at = now();
 
-                $user->save(); // Simpan data user baru ke database                
+                $user->save(); // Save the new user data to the database
             }
         }
     }

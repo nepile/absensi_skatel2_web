@@ -13,7 +13,7 @@ class LogActivityController extends Controller
         $data = [
             'title'         => 'User Activity',
             'id_page'       => 5,
-            'activities'    => UserActivity::all(),
+            'activities'    => UserActivity::orderBy('activity_id', 'DESC')->get(),
         ];
 
         return view('core.user_activity', $data);

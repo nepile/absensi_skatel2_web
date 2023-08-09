@@ -69,6 +69,31 @@ class LoginController extends Controller
         }
 
         if (JWTAuth::user()->level_id != 1) {
+
+
+            if (JWTAuth::user()->level->level_name == 'siswa') {
+                $class_name = JWTAuth::user()->class->class_name;
+            } else {
+                $class_name = 'Guru';
+            }
+
+            if ($request->asParent != false) {
+                PushActivityUser::push(JWTAuth::user()->user_id, 'Login', 'Orang tua siswa masuk ke dalam Aplikasi Mobile');
+                return response()->json([
+                    'success'       => true,
+                    'message'       => 'Authorized',
+                    'data'          => [
+                        'user_id'   => JWTAuth::user()->user_id,
+                        'username'  => JWTAuth::user()->username,
+                        'name'      => JWTAuth::user()->name,
+                        'class'     => $class_name,
+                        'role'      => 'Parent'
+                    ],
+                    'access_token'  => 'Bearer',
+                    'token'         => $token
+                ], 200);
+            }
+
             PushActivityUser::push(JWTAuth::user()->user_id, 'Login', 'Berhasil masuk ke dalam Aplikasi Mobile');
             return response()->json([
                 'success'       => true,
@@ -77,7 +102,8 @@ class LoginController extends Controller
                     'user_id'   => JWTAuth::user()->user_id,
                     'username'  => JWTAuth::user()->username,
                     'name'      => JWTAuth::user()->name,
-                    'class'     => JWTAuth::user()->class->class_name,
+                    'class'     => $class_name,
+                    'role'      => 'User',
                 ],
                 'access_token'  => 'Bearer',
                 'token'         => $token

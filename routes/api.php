@@ -11,7 +11,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [LoginController::class, 'handleLoginOnMobile']);
-Route::middleware(['jwt.auth', 'jwt.verify'])->group(function () {
+Route::middleware(['jwt.auth'])->group(function () {
     Route::post('/change-password', [UpdatePasswordController::class, 'changePassword']);
     Route::post('/presensi', [PresensiController::class, 'presensi']);
     Route::prefix('/rekap-presensi')->group(function () {

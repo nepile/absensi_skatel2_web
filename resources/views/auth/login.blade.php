@@ -15,7 +15,7 @@
                 <h4 style="font-weight: bold">Aksi Ditolak!</h4>
                 <p>Silakan logout terlebih dahulu.</p>
     
-                <form action="/handle_logout" method="POST">
+                <form action="{{ route('handleLogout') }}" method="POST">
                     @csrf
                     <button class="btn btn-danger">Logout</button>
                 </form>
